@@ -1,19 +1,30 @@
 "use client";
+import { useState } from "react";
 
-import { useForm } from "react-hook-form";
 import Pregunta from "./Pregunta";
 const ModeloEncuesta = ({ encuesta }) => {
-    const { register, handleSubmit } = useForm();
+    const [formData, setFormData] = useState({});
 
-    const onSubmit = (data) => {
-        // Aquí puedes manejar la lógica para enviar los datos del formulario
-        console.log(data);
+    // Función para manejar el envío del formulario
+    const onSubmit = (e) => {
+        e.preventDefault();
+        // Aquí puedes hacer algo con los datos, por ejemplo, enviarlos a un servidor
+        console.log("Datos enviados:", formData);
     };
 
+    // Función para actualizar el estado cuando se cambian los campos
+    const handleInputChange = (name, value) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+    };
+
+
+
     return (
-        <form className=" container" onSubmit={handleSubmit(onSubmit)}>
-            {encuesta.map((pregunta, index) => <Pregunta key={index} pregunta={pregunta}/>)}
-            <input type="submit" value="Enviar" />
+        <form className=" container" onSubmit={onSubmit}>
+            {encuesta.map((pregunta, index) => <Pregunta key={index} pregunta={pregunta} onInputChange={handleInputChange} />)}
         </form>
     );
 };

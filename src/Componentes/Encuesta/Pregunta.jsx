@@ -1,14 +1,19 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
-const Pregunta = ({ pregunta}) => {
+const Pregunta = ({ pregunta, onInputChange }) => {
     const { type, label, name, required, options } = pregunta;
+
+    const handleInputChangeLocal = (e) => {
+        const { name, value } = e.target;
+        onInputChange(name, value); // Llama a la función proporcionada por el componente principal
+    };
 
     if (type === "select") {
         return (
             <div className="mb-3 d-flex">
                 <label className="form-label">{label}</label>
-                <select name={name} >
+                <select name={name} onChange={handleInputChangeLocal}>
                     {options &&
                         options.map((opcion, index) => (
                             <option key={index} value={opcion.value}>
@@ -29,7 +34,7 @@ const Pregunta = ({ pregunta}) => {
                                 type="radio"
                                 name={name}
                                 value={opcion.value}
-                                
+                                onChange={handleInputChangeLocal}
                             />
                             <label>{opcion.label}</label>
                         </div>
@@ -43,7 +48,7 @@ const Pregunta = ({ pregunta}) => {
                 <input
                     type={type}
                     name={name}
-                    
+                    onChange={handleInputChangeLocal}
                 />
             </div>
         );
@@ -51,3 +56,5 @@ const Pregunta = ({ pregunta}) => {
 };
 
 export default Pregunta;
+
+
