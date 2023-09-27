@@ -18,7 +18,7 @@ const SeccionInicio = () => {
                 <button className="btn btn-primary">Iniciar Ahora</button>
             </div>
             <div>
-                <img src="https://www.evalandgo.com/img/hero.webp" alt="gente" />
+                <img className="img-fluid" src="https://www.evalandgo.com/img/hero.webp" alt="gente" />
             </div>
         </article>
     )
