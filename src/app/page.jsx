@@ -1,9 +1,9 @@
-
+import SeccionInicio from "@/Componentes/SeccionInicio/SeccionInicio"
 
 export default function Home() {
-  return (
-    <main >
-      <button className="btn btn-primary">hola</button>
-    </main>
-  )
+    return (
+        <main >
+            <SeccionInicio />
+        </main>
+    )
 }

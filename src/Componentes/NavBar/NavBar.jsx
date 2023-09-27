@@ -9,7 +9,7 @@ function NavBar() {
     return (
         <Navbar bg="dark" data-bs-theme="dark">
             <Container>
-                <Navbar.Brand href="#home">Encuestas On-line</Navbar.Brand>
+                <Navbar.Brand >Encuestas On-line</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
