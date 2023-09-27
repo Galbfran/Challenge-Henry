@@ -9,7 +9,7 @@ const Encuesta = new Schema({
         trim:true
     },
     encuestas:{
-        type: Schema.Types.Mixed,
+        type: [Schema.Types.Mixed],
     }
 },{
     timestamps:true
