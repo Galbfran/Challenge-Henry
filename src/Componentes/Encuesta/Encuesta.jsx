@@ -23,7 +23,7 @@ const ModeloEncuesta = ({ encuesta }) => {
 
 
     return (
-        <form className=" container" onSubmit={onSubmit}>
+        <form className=" container " onSubmit={onSubmit}>
             {encuesta.map((pregunta, index) => <Pregunta key={index} pregunta={pregunta} onInputChange={handleInputChange} />)}
         </form>
     );

@@ -79,7 +79,7 @@ const Encuesta = () => {
 
 
     return (
-        <article className="container  border shadow  rounded mt-3 mb-3 p-3">
+        <article className="container bg-secondary  border shadow  rounded mt-3 mb-3 p-3">
             <h2>Encuesta:</h2>
             <div>
                 <ModeloEncuesta encuesta={jsonData} />

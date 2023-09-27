@@ -5,7 +5,7 @@ const SeccionInicio = () => {
     return(
         <article className="container d-flex border shadow  rounded mt-3 mb-3 p-3">
             <div>
-                <h2 class="text-primary">Crear una encuesta o un cuestionario</h2>
+                <h2 className="text-primary">Crear una encuesta o un cuestionario</h2>
                 <h4>Nuestra aplicación te ayuda a hacer una encuesta de manera rápida y sencilla, adaptándose a tus necesidades.</h4>
                 <div>
                     <p>100% en línea</p>
