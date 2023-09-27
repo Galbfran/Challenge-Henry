@@ -17,6 +17,7 @@ function NavBar() {
                         <Link href="/login" className="nav-link">Ingresar</Link>
                         <Link href="/register" className="nav-link">Registrar</Link>
                         <Link href="/adminpage" className="nav-link">Admin</Link>
+                        <Link href="/encuestas/1" className="nav-link">Encuestas</Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
