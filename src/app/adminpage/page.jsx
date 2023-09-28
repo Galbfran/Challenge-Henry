@@ -1,6 +1,6 @@
 
 import TablaEncuestas from "@/Componentes/TablaEncuestas/TablaEncuestas"
-
+import TablaUser from "@/Componentes/TablaUser/TablaUser"
 
 const AdminPage = () => {
 
@@ -16,7 +16,7 @@ const AdminPage = () => {
             </div>
             <div>
                 <h2>Usuarios</h2>
-                <TablaEncuestas />
+                <TablaUser />
             </div>
         </article>
     )

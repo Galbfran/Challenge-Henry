@@ -20,6 +20,7 @@ const Usuario = new Schema({
     },
     encuestas:{
         type: Schema.Types.Mixed,
+        default: [] 
     }
 },{
     timestamps:true

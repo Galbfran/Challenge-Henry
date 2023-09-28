@@ -30,10 +30,12 @@ const conn = {
 };
 
 const passwordMongo = process.env.PASSWORD_MONGO;
+const userMongo = process.env.USER_MONGO;
+const mongoCluster = process.env.MONGO_CLUSTER;
 export async function connectDB() {
     if (conn.isConnected) return;
 //mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority
-const db = await mongoose.connect(`mongodb+srv://francogalbiati984:${passwordMongo}@cluster0.t85pn3y.mongodb.net/`);
+const db = await mongoose.connect(`mongodb+srv://${userMongo}:${passwordMongo}@${mongoCluster}/`);
     const dbName = mongoose.connection.name;
     console.log(`Conectado a la base de datos: ${dbName}`);
     conn.isConnected = db.connections[0].readyState;

@@ -9,7 +9,6 @@ const TablaEncuestas = () => {
       const fetchData = async () => {
         try {
           const response = await axios.get("/api/encuesta");
-          console.log(response);
           setData(response.data);
         } catch (error) {
           console.error("Error al obtener datos de la encuesta:", error);
@@ -32,7 +31,7 @@ const TablaEncuestas = () => {
       <tbody>
         {data.map((item) => (
           <tr key={item._id}>
-            <th scope="row"><Link href={`/encuestas/${item._id}`}>{item._id}</Link></th>
+            <th scope="row" ><Link className="btn btn-outline-secondary"  href={`/encuestas/${item._id}`}>{item._id}</Link></th>
             <td>{item.name}</td>
             <td>{item.createdAt}</td>
           </tr>
