@@ -1,91 +1,33 @@
-import ModeloEncuesta from "@/Componentes/Encuesta/Encuesta"
+"use client";
+import ModeloEncuesta from "@/Componentes/Encuesta/Encuesta";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Encuesta = () => {
-    const jsonData = [
-        {
-          type: "text",
-          label: "Nombre completo",
-          name: "full_name",
-          required: true
-        },
-        {
-          type: "tel",
-          label: "Número de teléfono",
-          name: "phone_number",
-          required: true
-        },
-        {
-          type: "date",
-          label: "Fecha de inicio",
-          name: "start_date",
-          required: false
-        },
-        {
-          type: "select",
-          label: "¿Cuál es tu idioma preferido?",
-          name: "preferred_language",
-          options: [
-            {
-              label: "Inglés",
-              value: "english"
-            },
-            {
-              label: "Español",
-              value: "spanish"
-            },
-            {
-              label: "Francés",
-              value: "french"
-            },
-            {
-              label: "Alemán",
-              value: "german"
-            }
-          ],
-          required: true
-        },
-        {
-          type: "radio",
-          label: "¿Cómo nos encontraste?",
-          name: "how_found",
-          options: [
-            {
-              label: "Amigos",
-              value: "friends"
-            },
-            {
-              label: "Búsqueda en línea",
-              value: "online_search"
-            },
-            {
-              label: "Publicidad",
-              value: "advertisement"
-            }
-          ],
-          required: true
-        },
-        {
-          type: "checkbox",
-          label: "¿Desea recibir nuestro boletín informativo?",
-          name: "newsletter_subscription",
-          required: false
-        },
-        {
-          type: "submit",
-          label: "Enviar"
-        }
-      ];
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("/api/encuesta/6514bd712a82f1c6358643f3");
+        setData(response.data.encuestas);
+      } catch (error) {
+        console.error("Error al obtener datos de la encuesta:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
 
+  return (
+    <article className="container bg-secondary border shadow rounded mt-3 mb-3 p-3">
+      <h2>Encuesta:</h2>
+      <div>
+        <ModeloEncuesta encuesta={data} />
+      </div>
+    </article>
+  );
+};
 
-    return (
-        <article className="container bg-secondary  border shadow  rounded mt-3 mb-3 p-3">
-            <h2>Encuesta:</h2>
-            <div>
-                <ModeloEncuesta encuesta={jsonData} />
-            </div>
-        </article>
-    )
-}
-
-export default Encuesta
+export default Encuesta;

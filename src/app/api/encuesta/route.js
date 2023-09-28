@@ -5,7 +5,13 @@ import Encuesta from "../../../models/encuestas"
 export async function GET(){
     await connectDB()
     const Encuestas = await Encuesta.find()
-    return NextResponse.json(Encuestas)
+    const encuestasReducidas = Encuestas.map((encuesta) => ({
+        _id: encuesta._id,
+        name: encuesta.name,
+        createdAt: encuesta.createdAt,
+      }));
+
+    return NextResponse.json(encuestasReducidas)
 }
 
 export async function POST(request){

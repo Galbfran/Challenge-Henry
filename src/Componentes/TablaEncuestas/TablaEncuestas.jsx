@@ -1,38 +1,45 @@
-
-
-
+"use client";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 const TablaEncuestas = () => {
-    return (
-        <table className="table table-dark table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>
-        </table>
-    )
-}
+    const [data, setData] = useState([]);
 
-export default TablaEncuestas
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get("/api/encuesta");
+          console.log(response);
+          setData(response.data);
+        } catch (error) {
+          console.error("Error al obtener datos de la encuesta:", error);
+        }
+      };
+  
+      fetchData();
+    }, []);
+
+
+  return (
+    <table className="table table-dark table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Creada</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item) => (
+          <tr key={item._id}>
+            <th scope="row">{item._id}</th>
+            <td>{item.name}</td>
+            <td>{item.createdAt}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+};
+
+export default TablaEncuestas;
