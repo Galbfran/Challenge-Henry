@@ -5,8 +5,6 @@ const Encuesta = new Schema({
     name:{
         type:String,
         require:[true, "El titulo es requerido"],
-        unique: true,
-        trim:true
     },
     encuestas:{
         type: [Schema.Types.Mixed],

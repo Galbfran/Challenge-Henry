@@ -9,7 +9,7 @@ const Perfil = () => {
                 <p>Email: Pepe@gmail.com</p>
             </div>
             <div>
-                <h2>Encuestas Realizadas</h2>
+                <h2>Encuestas </h2>
                 <TablaEncuestas />
             </div>
         </article>
