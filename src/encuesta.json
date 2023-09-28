@@ -1,5 +1,6 @@
 {
-    "items": [
+    "name":"full_name",
+    "encuestas": [
     {
     "type": "text",
     "label": "Nombre completo",
