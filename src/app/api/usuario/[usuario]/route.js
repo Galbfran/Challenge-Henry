@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "../../../../Base_Datos/db";
 import Usuario from "../../../../models/usuario";
+import mongoose from "mongoose";
 
 export async function GET(request, { params }) {
   try {
@@ -60,14 +61,27 @@ export async function DELETE(request, { params }) {
 
 export async function PUT(request, { params }) {
   try {
-    let data = await request.json();
-    let UsuarioUpdate = await Usuario.findByIdAndUpdate(
-      params.usuario,
-      data,
-      {
-        new: true,
-      }
-    );
+    const { email } = params;
+    const data = await request.json();
+    console.log(data);
+
+    // Busca al usuario por su dirección de correo electrónico
+    const usuario = await Usuario.findOne({ email });
+
+    if (!usuario) {
+      return NextResponse.json(
+        {
+          message: 'Usuario no encontrado',
+        },
+        {
+          status: 404,
+        }
+      );
+    }
+
+    // Agrega elementos al array 'encuestas' en el documento encontrado
+    usuario.encuestas.push(...data.encuestas);
+    const UsuarioUpdate = await usuario.save();
 
     return NextResponse.json(UsuarioUpdate);
   } catch (error) {
@@ -81,3 +95,9 @@ export async function PUT(request, { params }) {
     );
   }
 }
+
+
+
+
+
+
