@@ -1,12 +1,11 @@
 import TablaEncuestas from "@/Componentes/TablaEncuestas/TablaEncuestas"
-
+import DataUser from "@/Componentes/DataUser/DataUser"
 
 const Perfil = () => {
     return (
         <article className="container  border shadow  rounded mt-3 mb-3 p-3">
             <div>
-                <h3>Nombre: Pepe</h3>
-                <p>Email: Pepe@gmail.com</p>
+                <DataUser/>
             </div>
             <div>
                 <h2>Encuestas </h2>

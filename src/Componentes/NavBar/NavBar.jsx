@@ -16,16 +16,15 @@ function NavBar() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Link href="/" className="nav-link">Inicio</Link>
+                        <Link href="/adminpage" className="nav-link">Admin</Link>
+                        <Link href="/perfil/1" className="nav-link">Perfil</Link>
                         {
                             session ? (
-                                <button onClick={() => signOut()}>Salir</button>
+                                <button className="btn btn-outline-light" onClick={() => signOut()}>Salir</button>
                             ): (
-                                <button onClick={() => signIn()}>Ingresar</button>
+                                <button className="btn btn-outline-light" onClick={() => signIn()}>Ingresar</button>
                             )
                         }
-                        <Link href="/adminpage" className="nav-link">Admin</Link>
-                        <Link href="/encuestas/1" className="nav-link">Encuestas</Link>
-                        <Link href="/perfil/1" className="nav-link">Perfil</Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
