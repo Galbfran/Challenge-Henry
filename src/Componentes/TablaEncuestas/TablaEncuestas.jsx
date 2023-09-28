@@ -32,7 +32,7 @@ const TablaEncuestas = () => {
       <tbody>
         {data.map((item) => (
           <tr key={item._id}>
-            <th scope="row">{item._id}</th>
+            <th scope="row"><Link href={`/encuestas/${item._id}`}>{item._id}</Link></th>
             <td>{item.name}</td>
             <td>{item.createdAt}</td>
           </tr>
