@@ -60,15 +60,16 @@ export async function DELETE(request, { params }) {
 }
 
 export async function PUT(request, { params }) {
+  await connectDB();
   try {
-    const { email } = params;
+    const { usuario } = params;
     const data = await request.json();
-    console.log(data);
-
+    const {  ...nuevosDatos } = data;
+    let email= usuario
     // Busca al usuario por su dirección de correo electrónico
-    const usuario = await Usuario.findOne({ email });
-
-    if (!usuario) {
+    const usuarioEncontradoEmail = await Usuario.findOne({ email });
+    console.log(usuarioEncontradoEmail)
+    if (!usuarioEncontradoEmail) {
       return NextResponse.json(
         {
           message: 'Usuario no encontrado',
@@ -79,9 +80,11 @@ export async function PUT(request, { params }) {
       );
     }
 
-    // Agrega elementos al array 'encuestas' en el documento encontrado
-    usuario.encuestas.push(...data.encuestas);
-    const UsuarioUpdate = await usuario.save();
+    // Actualiza los datos del usuario con los nuevos datos
+    usuarioEncontradoEmail.set(nuevosDatos);
+
+    // Guarda los cambios en la base de datos
+    const UsuarioUpdate = await usuarioEncontradoEmail.save();
 
     return NextResponse.json(UsuarioUpdate);
   } catch (error) {
@@ -95,7 +98,6 @@ export async function PUT(request, { params }) {
     );
   }
 }
-
 
 
 
